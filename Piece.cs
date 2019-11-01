@@ -4,9 +4,9 @@ using System.Text;
 namespace Tetris_Game
 
 {
+    public enum Bricks { I, O, T, S, Z, J, L }
     class Piece
     {
-        enum Bricks { I, O, T, S, Z, J, L }
 
         static Point[][] pieces;  // jagged arrays.
         static int[][,] blocks = new int[7][,]; //arrary of 7 2d arrarys
@@ -34,13 +34,35 @@ namespace Tetris_Game
                 }
                 blocks[i] = block; // each block represents a different shape
 
+
             }
         }
 
-        public void listOfBlocks()
+        public int[,] GetBlock(Bricks shape)
         {
-            foreach (var block in blocks)
+            switch ((int)shape)
             {
+                case 0:
+                    return blocks[0];
+                case 1:
+                    return blocks[1];
+                case 2:
+                    return blocks[2];
+                case 3:
+                    return blocks[3];
+                case 4:
+                    return blocks[4];
+                case 5:
+                    return blocks[5];
+                case 6:
+                    return blocks[6];
+                default: throw new Exception();
+
+            }
+        }
+
+        public void PrintBlock(int[,] block)
+        {
                 for (int x = 0; x < 4; x++)
                 {
                     for (int y = 0; y < 4; y++)
@@ -62,8 +84,36 @@ namespace Tetris_Game
                     Console.WriteLine();
 
                 }
-            }
         }
+
+
+        //public void ListOfBlocks()
+        //{
+        //    foreach (var block in blocks)
+        //    {
+        //        for (int x = 0; x < 4; x++)
+        //        {
+        //            for (int y = 0; y < 4; y++)
+        //            {
+        //                //Console.Write(block[x, y] + " ");
+        //                if (block[y, x] == 1)
+        //                {
+        //                    Console.BackgroundColor = ConsoleColor.Yellow;
+        //                    Console.Write("  ");
+        //                    Console.ResetColor();
+        //                }
+        //                else
+        //                {
+        //                    Console.BackgroundColor = ConsoleColor.Gray;
+        //                    Console.Write("  ");
+        //                    Console.ResetColor();
+        //                }
+        //            }
+        //            Console.WriteLine();
+
+        //        }
+        //    }
+        //}
     }
 
 }

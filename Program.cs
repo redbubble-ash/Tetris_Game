@@ -8,9 +8,11 @@ namespace Tetris_Game
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Piece printShapes = new Piece();
-            Console.WriteLine("7 unique shapes are");
-            printShapes.listOfBlocks();
+            Piece newPiece = new Piece();
+            //Console.WriteLine("7 unique shapes are");
+            //printShapes.ListOfBlocks();
+            int[,] newCoordinates = newPiece.GetBlock(Bricks.Z);
+            newPiece.PrintBlock(newCoordinates);
 
         }
 
