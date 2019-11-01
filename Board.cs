@@ -6,17 +6,35 @@ namespace Tetris_Game
 {
     class Board
     {
-        //static int[,] size = new int[20, 12];
-        //static int BoardWidth { get; }
-        //static int BoardHeight { get; }
+        static int[,] wholeBoard = new int[30, 20];
+        static int BoardWidth { get; }
+        static int BoardHeight { get; }
 
-        //// add a piece into the board 
-        //public int[,] place(Piece x)
-        //{
-        //    int bx = 0;
-        //    int by = 0;
-        //    Piece x = new Piece();
-        //}; 
+        public Board()
+        {
+            for (int row = 0; row < 30; row++)
+            {
+                for (int col = 0; col < 20; col++)
+                {
+                    wholeBoard[row, col] = 0;
+                }
+            }
+        }
+
+        // add a piece into the board and add 1 for the filled cells
+        public int[,] place(Bricks x)
+        {
+            Piece newBrick = new Piece();
+            int[,] newBrickCoordinate = newBrick.GetBlock(x);
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    wholeBoard[i + 8, j] = newBrickCoordinate[i, j];
+                }
+            }
+            return wholeBoard;
+        }
         //public void clearRow() { }; //compact the board downwards by clearing any filled rows
         //public int rowWidth(); //the number of filled blocks in the given horizontal row
         //public int columnHeight(); //the height the board is filled in the given column.

@@ -68,7 +68,7 @@ namespace Tetris_Game
                     for (int y = 0; y < 4; y++)
                     {
                         //Console.Write(block[x, y] + " ");
-                        if (block[y, x] == 1)
+                        if (block[x, y] == 1)
                         {
                             Console.BackgroundColor = ConsoleColor.Yellow;
                             Console.Write("  ");
