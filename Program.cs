@@ -13,20 +13,19 @@ namespace Tetris_Game
         private static void Main(string[] args)
         {
             board = new Board();
-            board.PlaceBlock(Bricks.S);
+            board.PlaceBlock();
             displayBoard = new Display();
             displayBoard.PrintBoad(board);
             SetTimer();
-            Console.WriteLine("\nPress the Enter key to exit the application...\n");
-            Console.ReadLine();
+            Console.ReadLine();// instead of readline() use while loop with key to control left and right
             aTimer.Stop();
             aTimer.Dispose();
         }
 
         private static void SetTimer()
         {
-            // Create a timer with a two second interval.
-            aTimer = new System.Timers.Timer(1000);
+            // Create a timer with a one second interval.
+            aTimer = new System.Timers.Timer(500);
             // Hook up the Elapsed event for the timer.
             aTimer.Elapsed += Tick;
             aTimer.AutoReset = true;
@@ -35,7 +34,7 @@ namespace Tetris_Game
 
         private static void Tick(Object source, ElapsedEventArgs e)
         {
-            board.fallingPoint.y++;
+            board.DropBlock();
             displayBoard.PrintBoad(board);
         }
     }
