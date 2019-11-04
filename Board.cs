@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Timers;
 
 namespace Tetris_Game
 {
@@ -11,10 +10,6 @@ namespace Tetris_Game
 
         public Point fallingPoint = new Point(); //track the current falling block's x & y
         public Bricks currentBlock;
-        private static int BoardWidth { get; }
-        private static int BoardHeight { get; }
-
-        private static System.Timers.Timer aTimer;
 
         public Board()
         {
@@ -30,29 +25,9 @@ namespace Tetris_Game
         // add a piece into the board and add 1 for the filled cells
         public void PlaceBlock(Bricks block)
         {
-            //Piece newBrick = new Piece();
-            //int[,] newBrickCoordinate = newBrick.GetBlock(block);
             fallingPoint.x = 8;
             fallingPoint.y = 0;
             currentBlock = block;
-        }
-
-        private static void SetTimer()
-        {
-            // Create a timer with a two second interval.
-            aTimer = new System.Timers.Timer(2000);
-            // Hook up the Elapsed event for the timer.
-            aTimer.Elapsed += Tick;
-            aTimer.AutoReset = true;
-            aTimer.Enabled = true;
-        }
-
-        private static void Tick(Object source, ElapsedEventArgs e)
-        {
-        }
-
-        private static void MoveBlock()
-        {
         }
 
         //public void clearRow() { }; //compact the board downwards by clearing any filled rows

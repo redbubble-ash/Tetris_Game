@@ -32,6 +32,7 @@ namespace Tetris_Game
 
         public void PrintBoad(Board board)
         {
+            Console.Clear();
             for (int y = 0; y < board.wholeBoard.GetLength(0); y++)
             {
                 Console.Write("|");
