@@ -8,12 +8,14 @@ namespace Tetris_Game
         private static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Piece newPiece = new Piece();
-            int[,] newCoordinates = newPiece.GetBlock(Bricks.L);
-            Display newBlock = new Display();
-            newBlock.PrintBlock(newCoordinates);
+            //Piece newPiece = new Piece();
+            //int[,] newCoordinates = newPiece.GetBlock(Bricks.L);
+            //Display newBlock = new Display();
+            //newBlock.PrintBlock(newCoordinates);
+            Board newBlock = new Board();
+            newBlock.PlaceBlock(Bricks.T);
             Display displayBoard = new Display();
-            displayBoard.PrintBoad();
+            displayBoard.PrintBoad(Board.wholeBoard);
         }
     }
 }

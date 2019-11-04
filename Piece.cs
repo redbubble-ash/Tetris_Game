@@ -29,7 +29,7 @@ namespace Tetris_Game
 
                 foreach (var cell in pieces[i])
                 {
-                    block[cell.x, cell.y] = 1;
+                    block[cell.y, cell.x] = 1;
                 }
                 blocks[i] = block; // each block represents a different shape
             }

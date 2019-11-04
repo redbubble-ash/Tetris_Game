@@ -30,16 +30,25 @@ namespace Tetris_Game
             }
         }
 
-        public void PrintBoad()
+        public void PrintBoad(int[,] block)
         {
             for (int x = 0; x < Board.wholeBoard.GetLength(0); x++)
             {
                 Console.Write("|");
                 for (int y = 0; y < Board.wholeBoard.GetLength(1); y++)
                 {
-                    Console.BackgroundColor = ConsoleColor.Black;
-                    Console.Write("  ");
-                    Console.ResetColor();
+                    if (block[x, y] == 1)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Yellow;
+                        Console.Write("  ");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.Write("  ");
+                        Console.ResetColor();
+                    }
                 }
                 Console.WriteLine();
             }

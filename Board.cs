@@ -33,7 +33,7 @@ namespace Tetris_Game
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    wholeBoard[i + 8, j] = newBrickCoordinate[i, j];
+                    wholeBoard[i, j + 8] = newBrickCoordinate[i, j];
                 }
             }
             return wholeBoard;
