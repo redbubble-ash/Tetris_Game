@@ -92,14 +92,30 @@ namespace Tetris_Game
         {
             if (isInGame)
             {
-                switch (k)
+                Piece blockPiece = new Piece();
+                int[,] currentBrickCoordinates = blockPiece.GetBlock(currentBlock);
+                for (int row = 0; row < 4; row++)
                 {
-                    case Key.Left:
-                        fallingPoint.x--;
-                        break;
-                    case Key.Right:
-                        fallingPoint.x++;
-                        break;
+                    for (int col = 0; col < 4; col++)
+                    {
+                        if (currentBrickCoordinates[row, col] == 1)
+                        {
+                            switch (k)
+                            {
+                                case Key.Left:
+                                    if (col + fallingPoint.x > 0) fallingPoint.x--;
+                                    return;
+                                case Key.Right:
+                                    if (col + fallingPoint.x < boardWidth - 1) fallingPoint.x++;
+                                    return;
+                                case Key.Down:
+                                    if (row + fallingPoint.y < boardHeight - 1) fallingPoint.y++;
+                                    return;
+                                default:
+                                    return;
+                            }
+                        }
+                    }
                 }
             }
         }

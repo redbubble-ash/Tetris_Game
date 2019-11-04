@@ -31,7 +31,11 @@ namespace Tetris_Game
                         case ConsoleKey.RightArrow:
                             board.keyPress(Board.Key.Right);
                             break;
-
+                        case ConsoleKey.DownArrow:
+                            board.keyPress(Board.Key.Down);
+                            break;
+                        default:
+                            break;
                     }
 
                 }
