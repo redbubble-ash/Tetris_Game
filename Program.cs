@@ -9,7 +9,6 @@ namespace Tetris_Game
         private static System.Timers.Timer aTimer;
         private static Board board;
         private static Display displayBoard;
-        private static bool isInGame;
 
         private static void Main(string[] args)
         {
@@ -20,7 +19,24 @@ namespace Tetris_Game
             displayBoard = new Display();
             displayBoard.PrintBoad(board);
             SetTimer();
-            Console.ReadLine();// instead of readline() use while loop with key to control left and right
+            while (true)
+            {
+                if (Console.KeyAvailable)
+                {
+                    switch (Console.ReadKey(true).Key)
+                    {
+                        case ConsoleKey.LeftArrow:
+                            board.keyPress(Board.Key.Left);
+                            break;
+                        case ConsoleKey.RightArrow:
+                            board.keyPress(Board.Key.Right);
+                            break;
+
+                    }
+
+                }
+            }
+            //.ReadLine();// instead of readline() use while loop with key to control left and right
             aTimer.Stop();
             aTimer.Dispose();
         }

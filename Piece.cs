@@ -5,7 +5,6 @@ namespace Tetris_Game
 
 {
     public enum Bricks { I, O, T, S, Z, J, L }
-    public enum Key { Left, Right, Up, Down, rLeft, rDown}
 
     internal class Piece
     {

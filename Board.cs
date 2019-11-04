@@ -10,6 +10,8 @@ namespace Tetris_Game
         public int boardWidth;
         public int boardHeight;
         public Piece newPiece; // using this to handle rotation of a piece.
+        public enum Key { Left, Right, Up, Down, rLeft, rDown }
+        public bool isInGame;
 
         public Point fallingPoint = new Point(); //track the current falling block's x & y
         public Bricks currentBlock;
@@ -31,6 +33,7 @@ namespace Tetris_Game
         // add a piece into the board and add 1 for the filled cells
         public void PlaceBlock()
         {
+            isInGame = true;
             fallingPoint.x = 8;
             fallingPoint.y = 0;
             Random r = new Random();
@@ -84,6 +87,23 @@ namespace Tetris_Game
 
             //check if the row has been filled so it can be cleared.
         }
+
+        public void keyPress(Key k)
+        {
+            if (isInGame)
+            {
+                switch (k)
+                {
+                    case Key.Left:
+                        fallingPoint.x--;
+                        break;
+                    case Key.Right:
+                        fallingPoint.x++;
+                        break;
+                }
+            }
+        }
+
 
         //public void clearRow() { }; //compact the board downwards by clearing any filled rows
         //public int rowWidth(); //the number of filled blocks in the given horizontal row
