@@ -3,19 +3,17 @@ using System.Text;
 
 namespace Tetris_Game
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
             Piece newPiece = new Piece();
-            //Console.WriteLine("7 unique shapes are");
-            //printShapes.ListOfBlocks();
-            int[,] newCoordinates = newPiece.GetBlock(Bricks.Z);
-            newPiece.PrintBlock(newCoordinates);
-
+            int[,] newCoordinates = newPiece.GetBlock(Bricks.L);
+            Display newBlock = new Display();
+            newBlock.PrintBlock(newCoordinates);
+            Display displayBoard = new Display();
+            displayBoard.PrintBoad();
         }
-
-
     }
 }
