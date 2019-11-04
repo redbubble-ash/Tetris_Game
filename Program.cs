@@ -9,9 +9,12 @@ namespace Tetris_Game
         private static System.Timers.Timer aTimer;
         private static Board board;
         private static Display displayBoard;
+        private static bool isInGame;
 
         private static void Main(string[] args)
         {
+            Console.SetWindowSize(50, 50);
+            Console.SetBufferSize(80, 80);
             board = new Board();
             board.PlaceBlock();
             displayBoard = new Display();
