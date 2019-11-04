@@ -7,7 +7,10 @@ namespace Tetris_Game
 {
     internal class Board
     {
-        public static int[,] wholeBoard = new int[30, 20];
+        public int[,] wholeBoard = new int[30, 20];
+
+        public Point fallingPoint = new Point(); //track the current falling block's x & y
+        public Bricks currentBlock;
         private static int BoardWidth { get; }
         private static int BoardHeight { get; }
 
@@ -25,18 +28,13 @@ namespace Tetris_Game
         }
 
         // add a piece into the board and add 1 for the filled cells
-        public int[,] PlaceBlock(Bricks x)
+        public void PlaceBlock(Bricks block)
         {
-            Piece newBrick = new Piece();
-            int[,] newBrickCoordinate = newBrick.GetBlock(x);
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    wholeBoard[i, j + 8] = newBrickCoordinate[i, j];
-                }
-            }
-            return wholeBoard;
+            //Piece newBrick = new Piece();
+            //int[,] newBrickCoordinate = newBrick.GetBlock(block);
+            fallingPoint.x = 8;
+            fallingPoint.y = 0;
+            currentBlock = block;
         }
 
         private static void SetTimer()

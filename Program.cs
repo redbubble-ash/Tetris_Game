@@ -13,9 +13,9 @@ namespace Tetris_Game
             //Display newBlock = new Display();
             //newBlock.PrintBlock(newCoordinates);
             Board newBlock = new Board();
-            newBlock.PlaceBlock(Bricks.T);
+            newBlock.PlaceBlock(Bricks.S);
             Display displayBoard = new Display();
-            displayBoard.PrintBoad(Board.wholeBoard);
+            displayBoard.PrintBoad(newBlock);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Tetris_Game
 {
-    struct Point
+    internal struct Point
     {
         public int x;
         public int y;
@@ -13,9 +13,6 @@ namespace Tetris_Game
         {
             this.x = x;
             this.y = y;
-
         }
     }
-
-
 }
