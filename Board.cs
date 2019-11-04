@@ -103,10 +103,10 @@ namespace Tetris_Game
                             switch (k)
                             {
                                 case Key.Left:
-                                    if (col + fallingPoint.x > 0) fallingPoint.x--;
+                                    if (col + fallingPoint.x > 0 && wholeBoard[row, fallingPoint.x + col - 1] == 0) fallingPoint.x--;
                                     return;
                                 case Key.Right:
-                                    if (col + fallingPoint.x < boardWidth - 1) fallingPoint.x++;
+                                    if (col + fallingPoint.x < boardWidth - 1 && wholeBoard[row, fallingPoint.x + col + 1] == 0) fallingPoint.x++;
                                     return;
                                 case Key.Down:
                                     if (row + fallingPoint.y < boardHeight - 1) fallingPoint.y++;
@@ -121,7 +121,32 @@ namespace Tetris_Game
         }
 
 
-        //public void clearRow() { }; //compact the board downwards by clearing any filled rows
+        //compact the board downwards by clearing any filled rows
+        public void clearRow()
+        {
+            bool isFilled = false;
+            for (int row = boardHeight - 1; row >= 0; row--)
+            {
+                for (int col = 0; col < boardWidth; col++)
+                {
+                    if (wholeBoard[row, col] == 0) {
+                        isFilled = false;
+                        break;
+                    } 
+                    else if (wholeBoard[row, col] == 1)
+                    {
+                        isFilled = true;
+                    }
+                }
+                if (isFilled == true)
+                {
+                    for (int col = 0; col < boardWidth; col++)
+                    {
+                        wholeBoard[row, col] = wholeBoard[row - 1, col];
+                    }
+                }
+            }
+        }
         //public int rowWidth(); //the number of filled blocks in the given horizontal row
         //public int columnHeight(); //the height the board is filled in the given column.
         //public int dropHeight(Piece x); //the y value where the origin (lower left corner) of the given piece would come to rest if the piece dropped straight down at the given x
