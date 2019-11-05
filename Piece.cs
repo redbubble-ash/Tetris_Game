@@ -9,8 +9,8 @@ namespace Tetris_Game
     internal class Piece
     {
         private static Point[][] pieces;  // jagged arrays.
-        private static int[][,] blocks = new int[7][,]; //arrary of 7 2d arrarys
-        public int[,] pieceStore;
+        private static int[][,] blocks = new int[7][,]; //arrary of 7 2d arrays
+        public int[,] pieceStore; //non static 4*4 array to store cell status in order to rotate
 
         static Piece()
         {
@@ -79,39 +79,15 @@ namespace Tetris_Game
             }
         }
 
-        public void Rrotate() // create a new arrary to store all 16 new coordinates and then paste back to pieceStore
+        public void Rrotate() // create a new arrary to store all 16 new coordinates and then paste back to the pieceStore
         {
             int[,] pieceRotateArr = new int[4, 4];
 
             for (int row = 0; row < 4; row++)
             {
-                if (row == 0)
+                for (int col = 0; col < 4; col++)
                 {
-                    for (int col = 0; col < 4; col++)
-                    {
-                        pieceRotateArr[col, row + 3] = pieceStore[row, col];
-                    }
-                }
-                else if (row == 1)
-                {
-                    for (int col = 0; col < 4; col++)
-                    {
-                        pieceRotateArr[col, row + 1] = pieceStore[row, col];
-                    }
-                }
-                else if (row == 2)
-                {
-                    for (int col = 0; col < 4; col++)
-                    {
-                        pieceRotateArr[col, row - 1] = pieceStore[row, col];
-                    }
-                }
-                else if (row == 3)
-                {
-                    for (int col = 0; col < 4; col++)
-                    {
-                        pieceRotateArr[col, row - 3] = pieceStore[row, col];
-                    }
+                    pieceRotateArr[col, 3 - row] = pieceStore[row, col];
                 }
             }
 
@@ -128,35 +104,11 @@ namespace Tetris_Game
         {
             int[,] pieceRotateArr = new int[4, 4];
 
-            for (int col = 0; col < 4; col++)
+            for (int row = 0; row < 4; row++)
             {
-                if (col == 0)
+                for (int col = 0; col < 4; col++)
                 {
-                    for (int row = 0; row < 4; row++)
-                    {
-                        pieceRotateArr[col+3,row] = pieceStore[row, col];
-                    }
-                }
-                else if (col == 1)
-                {
-                    for (int row = 0; row < 4; row++)
-                    {
-                        pieceRotateArr[col + 1, row] = pieceStore[row, col];
-                    }
-                }
-                else if (col == 2)
-                {
-                    for (int row = 0; row < 4; row++)
-                    {
-                        pieceRotateArr[col - 1, row] = pieceStore[row, col];
-                    }
-                }
-                else if (col == 3)
-                {
-                    for (int row = 0; row < 4; row++)
-                    {
-                        pieceRotateArr[col - 3, row] = pieceStore[row, col];
-                    }
+                    pieceRotateArr[3 - col, row] = pieceStore[row, col];
                 }
             }
 

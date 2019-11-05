@@ -23,8 +23,8 @@ namespace Tetris_Game
                     }
                     else if (x >= board.fallingPoint.x && x < (board.fallingPoint.x + 4) && y >= board.fallingPoint.y && y < (board.fallingPoint.y + 4))
                     {
-                        Piece newBrick = new Piece(board.currentBlock);
-                        int[,] newBrickCoordinates = newBrick.GetBlock(board.currentBlock);
+                        //Piece newBrick = new Piece(board.currentBlock);
+                        int[,] newBrickCoordinates = board.newPiece.GetBlock(board.currentBlock);
                         if (newBrickCoordinates[y - board.fallingPoint.y, x - board.fallingPoint.x] == 1)
                         {
                             Console.BackgroundColor = ConsoleColor.Yellow;
@@ -48,7 +48,7 @@ namespace Tetris_Game
                 Console.WriteLine();
             }
             Console.SetCursorPosition(0, Board.boardHeight);
-            Console.WriteLine("########################################");
+            Console.WriteLine("#########################################");
         }
 
         public void PrintBlock(int[,] block)
