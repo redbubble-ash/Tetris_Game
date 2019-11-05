@@ -17,7 +17,6 @@ namespace Tetris_Game
         public int removedRows = 0;
 
         public Point fallingPoint = new Point(); //track the current falling block's x & y
-        public Bricks currentBlock;
         public Cell cellInBoard = new Cell(); //track each cell's value - int & color
 
         public Board()
@@ -34,7 +33,6 @@ namespace Tetris_Game
                 wholeBoard.Add(cellArrary);
             }
 
-            newPiece = new Piece(currentBlock);
         }
 
         // add a piece into the board and give value 1 for the filled cells
@@ -45,7 +43,7 @@ namespace Tetris_Game
             fallingPoint.y = 0;
             Random r = new Random();
             Bricks block = (Bricks)r.Next(1, 7);
-            currentBlock = block;
+            newPiece = new Piece(block);
         }
 
         public bool checkMove(int Xmove, int Ymove)
