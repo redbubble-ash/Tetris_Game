@@ -40,6 +40,14 @@ namespace Tetris_Game
                             board.keyPress(Board.Key.Down);
                             break;
 
+                        case ConsoleKey.A:
+                            board.keyPress(Board.Key.rLeft);
+                            break;
+
+                        case ConsoleKey.D:
+                            board.keyPress(Board.Key.rRight);
+                            break;
+
                         default:
                             break;
                     }

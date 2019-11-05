@@ -11,7 +11,7 @@ namespace Tetris_Game
         public List<Cell[]> wholeBoard;
         public Piece newPiece; // using this to handle rotation of a piece.
 
-        public enum Key { Left, Right, Up, Down, rLeft, rDown }
+        public enum Key { Left, Right, Down, rLeft, rRight }
 
         public bool isInGame;
         public int removedRows = 0;
@@ -33,6 +33,8 @@ namespace Tetris_Game
                 }
                 wholeBoard.Add(cellArrary);
             }
+
+            newPiece = new Piece(currentBlock);
         }
 
         // add a piece into the board and give value 1 for the filled cells
@@ -121,7 +123,12 @@ namespace Tetris_Game
                     case Key.Down:
                         if (checkMove(0, 1)) fallingPoint.y++;
                         break;
-
+                    case Key.rLeft:
+                        newPiece.Lrotate() ;
+                        break;
+                    case Key.rRight:
+                        newPiece.Rrotate();
+                        break;
                     default:
                         break;
                 }

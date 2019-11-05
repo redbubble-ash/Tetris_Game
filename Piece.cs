@@ -114,10 +114,17 @@ namespace Tetris_Game
                     }
                 }
             }
-            pieceStore = pieceRotateArr;
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    pieceStore[i, j] = pieceRotateArr[i, j];
+                }
+            }
         }
 
-        public void Lrotate() // create a new arrary to store all 16 new coordinates and then paste back to pieceStore
+        public void Lrotate() // create a new arrary to store all 16 new coordinates and then paste back to the pieceStore array.
         {
             int[,] pieceRotateArr = new int[4, 4];
 
@@ -152,7 +159,14 @@ namespace Tetris_Game
                     }
                 }
             }
-            pieceStore = pieceRotateArr;
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    pieceStore[i, j] = pieceRotateArr[i, j];
+                }
+            }
         }
     }
 }
