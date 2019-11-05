@@ -42,7 +42,7 @@ namespace Tetris_Game
             fallingPoint.x = 8;
             fallingPoint.y = 0;
             Random r = new Random();
-            Bricks block = (Bricks)r.Next(1, 7);
+            Bricks block = (Bricks)r.Next(0, 7);
             newPiece = new Piece(block);
             currentBlock = block;
         }
