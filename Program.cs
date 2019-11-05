@@ -22,8 +22,9 @@ namespace Tetris_Game
             SetTimer();
             while (true)
             {
-                Thread.Sleep(200);
-                if (Console.KeyAvailable)
+                displayBoard.PrintBoad(board);
+                Thread.Sleep(200); //allow main thread delay for 0.2 second
+                while (Console.KeyAvailable)
                 {
                     switch (Console.ReadKey(true).Key)
                     {
@@ -62,7 +63,7 @@ namespace Tetris_Game
         private static void Tick(Object source, ElapsedEventArgs e)
         {
             board.DropBlock();
-            displayBoard.PrintBoad(board);
+            //displayBoard.PrintBoad(board);
         }
     }
 }

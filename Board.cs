@@ -6,29 +6,32 @@ namespace Tetris_Game
 {
     internal class Board
     {
-        public int[,] wholeBoard = new int[30, 20];
-        public int boardWidth;
-        public int boardHeight;
+        public const int boardWidth = 20;
+        public const int boardHeight = 30;
+        public List<Cell[]> wholeBoard;
         public Piece newPiece; // using this to handle rotation of a piece.
 
         public enum Key { Left, Right, Up, Down, rLeft, rDown }
 
         public bool isInGame;
+        public int removedRows = 0;
 
         public Point fallingPoint = new Point(); //track the current falling block's x & y
         public Bricks currentBlock;
+        public Cell cellInBoard = new Cell(); //track each cell's value - int & color
 
         public Board()
         {
-            boardWidth = wholeBoard.GetLength(1);
-            boardHeight = wholeBoard.GetLength(0);
-
-            for (int row = 0; row < 30; row++)
+            wholeBoard = new List<Cell[]>();
+            for (int row = 0; row < boardHeight; row++)
             {
-                for (int col = 0; col < 20; col++)
+                Cell[] cellArrary;
+                cellArrary = new Cell[boardWidth];
+                for (int i = 0; i < boardWidth; i++)
                 {
-                    wholeBoard[row, col] = 0;
+                    cellArrary[i] = new Cell { val = 0 };
                 }
+                wholeBoard.Add(cellArrary);
             }
         }
 
@@ -38,9 +41,10 @@ namespace Tetris_Game
             isInGame = true;
             fallingPoint.x = 8;
             fallingPoint.y = 0;
-            Random r = new Random();
-            Bricks block = (Bricks)r.Next(0, 7);
-            currentBlock = block;
+            //Random r = new Random();
+            //Bricks block = (Bricks)r.Next(0, 7);
+            //currentBlock = block;
+            currentBlock = Bricks.O;
         }
 
         public bool checkMove(int Xmove, int Ymove)
@@ -61,7 +65,7 @@ namespace Tetris_Game
                         {
                             return false;
                         }
-                        else if (wholeBoard[fallingPoint.y + j + Ymove, fallingPoint.x + i + Xmove] == 1)
+                        else if (wholeBoard[fallingPoint.y + j + Ymove][fallingPoint.x + i + Xmove].val == 1)
                         {
                             return false;
                         }
@@ -93,12 +97,12 @@ namespace Tetris_Game
                 {
                     if (currentBrickCoordinates[row, col] == 1)
                     {
-                        wholeBoard[row + fallingPoint.y, col + fallingPoint.x] = 1;
+                        wholeBoard[row + fallingPoint.y][col + fallingPoint.x].val = 1;
                     }
                 }
             }
 
-            //check if the row has been filled so it can be cleared.
+            clearRow(); //check if the row has been filled so it can be cleared.
         }
 
         public void keyPress(Key k)
@@ -128,33 +132,35 @@ namespace Tetris_Game
         //compact the board downwards by clearing any filled rows
         public void clearRow()
         {
-            bool isFilled = false;
-            for (int row = boardHeight - 1; row >= 0; row--)
+            for (int row = 0; row < boardHeight; row++)
             {
+                bool isFilled = true;
+
                 for (int col = 0; col < boardWidth; col++)
                 {
-                    if (wholeBoard[row, col] == 0)
+                    if (wholeBoard[row][col].val == 0)
                     {
                         isFilled = false;
                         break;
                     }
-                    else if (wholeBoard[row, col] == 1)
-                    {
-                        isFilled = true;
-                    }
                 }
-                if (isFilled == true)
+                if (isFilled)
                 {
-                    for (int col = 0; col < boardWidth; col++)
+                    wholeBoard.RemoveAt(row);
+                    Cell[] cellArrary;
+                    cellArrary = new Cell[boardWidth];
+                    for (int i = 0; i < boardWidth; i++)
                     {
-                        wholeBoard[row, col] = wholeBoard[row - 1, col];
+                        cellArrary[i] = new Cell { val = 0 };
                     }
+                    wholeBoard.Insert(0, cellArrary);
+                    removedRows++;
                 }
             }
-        }
 
-        //public int rowWidth(); //the number of filled blocks in the given horizontal row
-        //public int columnHeight(); //the height the board is filled in the given column.
-        //public int dropHeight(Piece x); //the y value where the origin (lower left corner) of the given piece would come to rest if the piece dropped straight down at the given x
+            //public int rowWidth(); //the number of filled blocks in the given horizontal row
+            //public int columnHeight(); //the height the board is filled in the given column.
+            //public int dropHeight(Piece x); //the y value where the origin (lower left corner) of the given piece would come to rest if the piece dropped straight down at the given x
+        }
     }
 }

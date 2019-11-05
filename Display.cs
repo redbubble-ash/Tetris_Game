@@ -10,13 +10,13 @@ namespace Tetris_Game
         {
             //Console.Clear();
             Console.CursorVisible = false;
-            for (int y = 0; y < board.boardHeight; y++)
+            for (int y = 0; y < Board.boardHeight; y++)
             {
                 Console.SetCursorPosition(0, y);
                 Console.Write("*");
-                for (int x = 0; x < board.boardWidth; x++)
+                for (int x = 0; x < Board.boardWidth; x++)
                 {
-                    if (board.wholeBoard[y, x] == 1)
+                    if (board.wholeBoard[y][x].val == 1)
                     {
                         Console.BackgroundColor = ConsoleColor.Yellow;
                         Console.Write("  ");
@@ -48,7 +48,7 @@ namespace Tetris_Game
                 }
                 Console.WriteLine();
             }
-            Console.SetCursorPosition(0, board.boardHeight);
+            Console.SetCursorPosition(0, Board.boardHeight);
             Console.WriteLine("########################################");
         }
 
