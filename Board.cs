@@ -48,7 +48,7 @@ namespace Tetris_Game
 
         public bool checkMove(int Xmove, int Ymove)
         {
-            Piece blockPiece = new Piece();
+            Piece blockPiece = new Piece(currentBlock);
             int[,] currentBrickCoordinates = blockPiece.GetBlock(currentBlock);
             for (int i = 0; i < 4; i++)
             {
@@ -88,7 +88,7 @@ namespace Tetris_Game
 
         public void FillBlock()
         {
-            Piece blockPiece = new Piece();
+            Piece blockPiece = new Piece(currentBlock);
             int[,] currentBrickCoordinates = blockPiece.GetBlock(currentBlock);
             for (int row = 0; row < 4; row++)
             {

@@ -23,7 +23,7 @@ namespace Tetris_Game
                     }
                     else if (x >= board.fallingPoint.x && x < (board.fallingPoint.x + 4) && y >= board.fallingPoint.y && y < (board.fallingPoint.y + 4))
                     {
-                        Piece newBrick = new Piece();
+                        Piece newBrick = new Piece(board.currentBlock);
                         int[,] newBrickCoordinates = newBrick.GetBlock(board.currentBlock);
                         if (newBrickCoordinates[y - board.fallingPoint.y, x - board.fallingPoint.x] == 1)
                         {

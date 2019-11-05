@@ -10,6 +10,7 @@ namespace Tetris_Game
     {
         private static Point[][] pieces;  // jagged arrays.
         private static int[][,] blocks = new int[7][,]; //arrary of 7 2d arrarys
+        public int[,] pieceStore;
 
         static Piece()
         {
@@ -32,6 +33,20 @@ namespace Tetris_Game
                     block[cell.y, cell.x] = 1;
                 }
                 blocks[i] = block; // each block represents a different shape
+            }
+        }
+
+        public Piece(Bricks shape)
+        {
+            pieceStore = new int[4, 4];
+            int[,] block = GetBlock(shape);
+
+            for (int row = 0; row < 4; row++)
+            {
+                for (int col = 0; col < 4; col++)
+                {
+                    pieceStore[row, col] = block[row, col];
+                }
             }
         }
 
@@ -61,6 +76,26 @@ namespace Tetris_Game
                     return blocks[6];
 
                 default: throw new Exception();
+            }
+        }
+
+        public void Rrotate() // create a new arrary to store all 16 new coordinates and then paste back to pieceStore
+        {
+            for (int row = 0; row < 4; row++)
+            {
+                for (int col = 0; col < 4; col++)
+                {
+                }
+            }
+        }
+
+        public void Lrotate() // create a new arrary to store all 16 new coordinates and then paste back to pieceStore
+        {
+            for (int row = 0; row < 4; row++)
+            {
+                for (int col = 0; col < 4; col++)
+                {
+                }
             }
         }
     }
