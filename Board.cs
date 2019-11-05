@@ -10,7 +10,9 @@ namespace Tetris_Game
         public int boardWidth;
         public int boardHeight;
         public Piece newPiece; // using this to handle rotation of a piece.
+
         public enum Key { Left, Right, Up, Down, rLeft, rDown }
+
         public bool isInGame;
 
         public Point fallingPoint = new Point(); //track the current falling block's x & y
@@ -41,7 +43,7 @@ namespace Tetris_Game
             currentBlock = block;
         }
 
-        public void DropBlock()
+        public bool checkMove(int Xmove, int Ymove)
         {
             Piece blockPiece = new Piece();
             int[,] currentBrickCoordinates = blockPiece.GetBlock(currentBlock);
@@ -51,20 +53,31 @@ namespace Tetris_Game
                 {
                     if (currentBrickCoordinates[j, i] == 1)
                     {
-                        if (j + fallingPoint.y + 1 >= boardHeight)
+                        if (j + fallingPoint.y + Ymove >= boardHeight)
                         {
-                            FillBlock();
-                            PlaceBlock();
-                            return;
+                            return false;
                         }
-                        else if (wholeBoard[fallingPoint.y + j + 1, fallingPoint.x + i] == 1)
+                        else if (i + fallingPoint.x + Xmove >= boardWidth || i + fallingPoint.x + Xmove < 0)
                         {
-                            FillBlock();
-                            PlaceBlock();
-                            return;
+                            return false;
+                        }
+                        else if (wholeBoard[fallingPoint.y + j + Ymove, fallingPoint.x + i + Xmove] == 1)
+                        {
+                            return false;
                         }
                     }
                 }
+            }
+            return true;
+        }
+
+        public void DropBlock()
+        {
+            if (!checkMove(0, 1))
+            {
+                FillBlock();
+                PlaceBlock();
+                return;
             }
 
             fallingPoint.y++;
@@ -92,34 +105,25 @@ namespace Tetris_Game
         {
             if (isInGame)
             {
-                Piece blockPiece = new Piece();
-                int[,] currentBrickCoordinates = blockPiece.GetBlock(currentBlock);
-                for (int row = 0; row < 4; row++)
+                switch (k)
                 {
-                    for (int col = 0; col < 4; col++)
-                    {
-                        if (currentBrickCoordinates[row, col] == 1)
-                        {
-                            switch (k)
-                            {
-                                case Key.Left:
-                                    if (col + fallingPoint.x > 0 && wholeBoard[row, fallingPoint.x + col - 1] == 0) fallingPoint.x--;
-                                    return;
-                                case Key.Right:
-                                    if (col + fallingPoint.x < boardWidth - 1 && wholeBoard[row, fallingPoint.x + col + 1] == 0) fallingPoint.x++;
-                                    return;
-                                case Key.Down:
-                                    if (row + fallingPoint.y < boardHeight - 1) fallingPoint.y++;
-                                    return;
-                                default:
-                                    return;
-                            }
-                        }
-                    }
+                    case Key.Left:
+                        if (checkMove(-1, 0)) fallingPoint.x--;
+                        break;
+
+                    case Key.Right:
+                        if (checkMove(1, 0)) fallingPoint.x++;
+                        break;
+
+                    case Key.Down:
+                        if (checkMove(0, 1)) fallingPoint.y++;
+                        break;
+
+                    default:
+                        break;
                 }
             }
         }
-
 
         //compact the board downwards by clearing any filled rows
         public void clearRow()
@@ -129,10 +133,11 @@ namespace Tetris_Game
             {
                 for (int col = 0; col < boardWidth; col++)
                 {
-                    if (wholeBoard[row, col] == 0) {
+                    if (wholeBoard[row, col] == 0)
+                    {
                         isFilled = false;
                         break;
-                    } 
+                    }
                     else if (wholeBoard[row, col] == 1)
                     {
                         isFilled = true;
@@ -147,6 +152,7 @@ namespace Tetris_Game
                 }
             }
         }
+
         //public int rowWidth(); //the number of filled blocks in the given horizontal row
         //public int columnHeight(); //the height the board is filled in the given column.
         //public int dropHeight(Piece x); //the y value where the origin (lower left corner) of the given piece would come to rest if the piece dropped straight down at the given x

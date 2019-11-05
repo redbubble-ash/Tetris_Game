@@ -6,7 +6,6 @@ namespace Tetris_Game
 {
     internal class Display
     {
-
         public void PrintBoad(Board board)
         {
             //Console.Clear();
@@ -21,7 +20,7 @@ namespace Tetris_Game
                     {
                         Console.BackgroundColor = ConsoleColor.Yellow;
                         Console.Write("  ");
-                        //Console.ResetColor();
+                        Console.ResetColor();
                     }
                     else if (x >= board.fallingPoint.x && x < (board.fallingPoint.x + 4) && y >= board.fallingPoint.y && y < (board.fallingPoint.y + 4))
                     {
@@ -77,5 +76,4 @@ namespace Tetris_Game
             }
         }
     }
-
 }

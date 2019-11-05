@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Timers;
+using System.Threading;
 
 namespace Tetris_Game
 {
@@ -21,6 +22,7 @@ namespace Tetris_Game
             SetTimer();
             while (true)
             {
+                Thread.Sleep(200);
                 if (Console.KeyAvailable)
                 {
                     switch (Console.ReadKey(true).Key)
@@ -28,19 +30,21 @@ namespace Tetris_Game
                         case ConsoleKey.LeftArrow:
                             board.keyPress(Board.Key.Left);
                             break;
+
                         case ConsoleKey.RightArrow:
                             board.keyPress(Board.Key.Right);
                             break;
+
                         case ConsoleKey.DownArrow:
                             board.keyPress(Board.Key.Down);
                             break;
+
                         default:
                             break;
                     }
-
                 }
             }
-            //.ReadLine();// instead of readline() use while loop with key to control left and right
+            //Console.ReadLine();// instead of readline() use while loop with key to control left and right
             aTimer.Stop();
             aTimer.Dispose();
         }
