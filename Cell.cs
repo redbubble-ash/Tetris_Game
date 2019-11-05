@@ -7,5 +7,6 @@ namespace Tetris_Game
     internal struct Cell
     {
         public int val;
+        public ConsoleColor color;
     }
 }

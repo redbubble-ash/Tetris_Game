@@ -5,7 +5,6 @@ namespace Tetris_Game
 
 {
     public enum Bricks { I, O, T, S, Z, J, L }
-
     internal class Piece
     {
         private static Point[][] pieces;  // jagged arrays.
@@ -74,6 +73,35 @@ namespace Tetris_Game
 
                 case 6:
                     return blocks[6];
+
+                default: throw new Exception();
+            }
+        }
+
+        public ConsoleColor GetShapeColor(Bricks shape)
+        {
+            switch ((int)shape)
+            {
+                case 0:
+                    return ConsoleColor.Blue;
+
+                case 1:
+                    return ConsoleColor.Green;
+
+                case 2:
+                    return ConsoleColor.Magenta;
+
+                case 3:
+                    return ConsoleColor.White;
+
+                case 4:
+                    return ConsoleColor.Red;
+
+                case 5:
+                    return ConsoleColor.Yellow;
+
+                case 6:
+                    return ConsoleColor.Cyan;
 
                 default: throw new Exception();
             }

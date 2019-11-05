@@ -17,7 +17,7 @@ namespace Tetris_Game
                 {
                     if (board.wholeBoard[y][x].val == 1)
                     {
-                        Console.BackgroundColor = ConsoleColor.Yellow;
+                        Console.BackgroundColor = board.wholeBoard[y][x].color;
                         Console.Write("  ");
                         Console.ResetColor();
                     }
@@ -25,7 +25,7 @@ namespace Tetris_Game
                     {
                         if (board.newPiece.pieceStore[y - board.fallingPoint.y, x - board.fallingPoint.x] == 1)
                         {
-                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            Console.BackgroundColor = board.newPiece.GetShapeColor(board.currentBlock);
                             Console.Write("  ");
                             Console.ResetColor();
                         }

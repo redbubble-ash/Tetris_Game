@@ -10,7 +10,7 @@ namespace Tetris_Game
         public const int boardHeight = 30;
         public List<Cell[]> wholeBoard;
         public Piece newPiece; // using this to handle rotation of a piece.
-
+        public Bricks currentBlock;
         public enum Key { Left, Right, Down, rLeft, rRight }
 
         public bool isInGame;
@@ -44,6 +44,7 @@ namespace Tetris_Game
             Random r = new Random();
             Bricks block = (Bricks)r.Next(1, 7);
             newPiece = new Piece(block);
+            currentBlock = block;
         }
 
         public bool checkMove(int Xmove, int Ymove)
@@ -93,6 +94,7 @@ namespace Tetris_Game
                     if (newPiece.pieceStore[row, col] == 1)
                     {
                         wholeBoard[row + fallingPoint.y][col + fallingPoint.x].val = 1;
+                        wholeBoard[row + fallingPoint.y][col + fallingPoint.x].color = newPiece.GetShapeColor(currentBlock);
                     }
                 }
             }
@@ -118,7 +120,7 @@ namespace Tetris_Game
                         if (checkMove(0, 1)) fallingPoint.y++;
                         break;
                     case Key.rLeft:
-                        newPiece.Lrotate() ;
+                        newPiece.Lrotate();
                         break;
                     case Key.rRight:
                         newPiece.Rrotate();
