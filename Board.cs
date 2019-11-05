@@ -44,19 +44,17 @@ namespace Tetris_Game
             fallingPoint.x = 8;
             fallingPoint.y = 0;
             Random r = new Random();
-            Bricks block = (Bricks)r.Next(0, 7);
+            Bricks block = (Bricks)r.Next(1, 7);
             currentBlock = block;
         }
 
         public bool checkMove(int Xmove, int Ymove)
         {
-            //Piece blockPiece = new Piece(currentBlock);
-            int[,] currentBrickCoordinates = newPiece.GetBlock(currentBlock);
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    if (currentBrickCoordinates[j, i] == 1)
+                    if (newPiece.pieceStore[j, i] == 1)
                     {
                         if (j + fallingPoint.y + Ymove >= boardHeight)
                         {
@@ -90,13 +88,11 @@ namespace Tetris_Game
 
         public void FillBlock()
         {
-            //Piece blockPiece = new Piece(currentBlock);
-            int[,] currentBrickCoordinates = newPiece.GetBlock(currentBlock);
             for (int row = 0; row < 4; row++)
             {
                 for (int col = 0; col < 4; col++)
                 {
-                    if (currentBrickCoordinates[row, col] == 1)
+                    if (newPiece.pieceStore[row, col] == 1)
                     {
                         wholeBoard[row + fallingPoint.y][col + fallingPoint.x].val = 1;
                     }

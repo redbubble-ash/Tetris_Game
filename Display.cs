@@ -24,8 +24,8 @@ namespace Tetris_Game
                     else if (x >= board.fallingPoint.x && x < (board.fallingPoint.x + 4) && y >= board.fallingPoint.y && y < (board.fallingPoint.y + 4))
                     {
                         //Piece newBrick = new Piece(board.currentBlock);
-                        int[,] newBrickCoordinates = board.newPiece.GetBlock(board.currentBlock);
-                        if (newBrickCoordinates[y - board.fallingPoint.y, x - board.fallingPoint.x] == 1)
+                        //int[,] newBrickCoordinates = board.newPiece.GetBlock(board.currentBlock);
+                        if (board.newPiece.pieceStore[y - board.fallingPoint.y, x - board.fallingPoint.x] == 1)
                         {
                             Console.BackgroundColor = ConsoleColor.Yellow;
                             Console.Write("  ");

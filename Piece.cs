@@ -50,7 +50,7 @@ namespace Tetris_Game
             }
         }
 
-        public int[,] GetBlock(Bricks shape)
+        private int[,] GetBlock(Bricks shape)
         {
             switch ((int)shape)
             {
