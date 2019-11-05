@@ -81,22 +81,78 @@ namespace Tetris_Game
 
         public void Rrotate() // create a new arrary to store all 16 new coordinates and then paste back to pieceStore
         {
+            int[,] pieceRotateArr = new int[4, 4];
+
             for (int row = 0; row < 4; row++)
             {
-                for (int col = 0; col < 4; col++)
+                if (row == 0)
                 {
+                    for (int col = 0; col < 4; col++)
+                    {
+                        pieceRotateArr[col, row + 3] = pieceStore[row, col];
+                    }
+                }
+                else if (row == 1)
+                {
+                    for (int col = 0; col < 4; col++)
+                    {
+                        pieceRotateArr[col, row + 1] = pieceStore[row, col];
+                    }
+                }
+                else if (row == 2)
+                {
+                    for (int col = 0; col < 4; col++)
+                    {
+                        pieceRotateArr[col, row - 1] = pieceStore[row, col];
+                    }
+                }
+                else if (row == 3)
+                {
+                    for (int col = 0; col < 4; col++)
+                    {
+                        pieceRotateArr[col, row - 3] = pieceStore[row, col];
+                    }
                 }
             }
+            pieceStore = pieceRotateArr;
         }
 
         public void Lrotate() // create a new arrary to store all 16 new coordinates and then paste back to pieceStore
         {
-            for (int row = 0; row < 4; row++)
+            int[,] pieceRotateArr = new int[4, 4];
+
+            for (int col = 0; col < 4; col++)
             {
-                for (int col = 0; col < 4; col++)
+                if (col == 0)
                 {
+                    for (int row = 0; row < 4; row++)
+                    {
+                        pieceRotateArr[col+3,row] = pieceStore[row, col];
+                    }
+                }
+                else if (col == 1)
+                {
+                    for (int row = 0; row < 4; row++)
+                    {
+                        pieceRotateArr[col + 1, row] = pieceStore[row, col];
+                    }
+                }
+                else if (col == 2)
+                {
+                    for (int row = 0; row < 4; row++)
+                    {
+                        pieceRotateArr[col - 1, row] = pieceStore[row, col];
+                    }
+                }
+                else if (col == 3)
+                {
+                    for (int row = 0; row < 4; row++)
+                    {
+                        pieceRotateArr[col - 3, row] = pieceStore[row, col];
+                    }
                 }
             }
+            pieceStore = pieceRotateArr;
         }
     }
 }
