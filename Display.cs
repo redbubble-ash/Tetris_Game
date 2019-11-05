@@ -43,10 +43,12 @@ namespace Tetris_Game
                         Console.ResetColor();
                     }
                 }
+                Console.SetCursorPosition(Board.boardWidth*2+1, y);
+                Console.Write("*");
                 Console.WriteLine();
             }
             Console.SetCursorPosition(0, Board.boardHeight);
-            Console.WriteLine("#########################################");
+            Console.WriteLine("##########################################");
         }
 
         public void PrintBlock(int[,] block)
