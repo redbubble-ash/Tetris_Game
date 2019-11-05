@@ -35,16 +35,15 @@ namespace Tetris_Game
             }
         }
 
-        // add a piece into the board and add 1 for the filled cells
+        // add a piece into the board and give value 1 for the filled cells
         public void PlaceBlock()
         {
             isInGame = true;
             fallingPoint.x = 8;
             fallingPoint.y = 0;
-            //Random r = new Random();
-            //Bricks block = (Bricks)r.Next(0, 7);
-            //currentBlock = block;
-            currentBlock = Bricks.O;
+            Random r = new Random();
+            Bricks block = (Bricks)r.Next(0, 7);
+            currentBlock = block;
         }
 
         public bool checkMove(int Xmove, int Ymove)
@@ -157,10 +156,6 @@ namespace Tetris_Game
                     removedRows++;
                 }
             }
-
-            //public int rowWidth(); //the number of filled blocks in the given horizontal row
-            //public int columnHeight(); //the height the board is filled in the given column.
-            //public int dropHeight(Piece x); //the y value where the origin (lower left corner) of the given piece would come to rest if the piece dropped straight down at the given x
         }
     }
 }

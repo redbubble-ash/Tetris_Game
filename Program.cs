@@ -45,7 +45,6 @@ namespace Tetris_Game
                     }
                 }
             }
-            //Console.ReadLine();// instead of readline() use while loop with key to control left and right
             aTimer.Stop();
             aTimer.Dispose();
         }

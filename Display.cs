@@ -8,7 +8,6 @@ namespace Tetris_Game
     {
         public void PrintBoad(Board board)
         {
-            //Console.Clear();
             Console.CursorVisible = false;
             for (int y = 0; y < Board.boardHeight; y++)
             {
@@ -58,7 +57,6 @@ namespace Tetris_Game
             {
                 for (int y = 0; y < 4; y++)
                 {
-                    //Console.Write(block[x, y] + " ");
                     if (block[x, y] == 1)
                     {
                         Console.BackgroundColor = ConsoleColor.Yellow;
