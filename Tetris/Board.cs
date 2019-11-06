@@ -11,6 +11,9 @@ namespace Tetris_Game
         public List<Cell[]> wholeBoard;
         public Piece newPiece; // using this to handle rotation of a piece.
         public Bricks currentBlock;
+        public Bricks nextBlock;
+        public Bricks[] rArr = new Bricks[2];
+
 
         public enum Key { Left, Right, Down, rLeft, rRight }
 
@@ -42,9 +45,14 @@ namespace Tetris_Game
             fallingPoint.x = 8;
             fallingPoint.y = 0;
             Random r = new Random();
-            Bricks block = (Bricks)r.Next(0, 7);
-            newPiece = new Piece(block);
-            currentBlock = block;
+            for (int i = 0; i < 2; i++)
+            {
+                Bricks blocks = (Bricks)r.Next(0, 7);
+                rArr[i] = blocks;
+            }
+            currentBlock = rArr[0];
+            newPiece = new Piece(currentBlock);
+            nextBlock = rArr[1];
         }
 
         public bool checkMove(int Xmove, int Ymove)

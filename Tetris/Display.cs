@@ -51,6 +51,11 @@ namespace Tetris_Game
             Console.WriteLine("##########################################");
         }
 
+        public void PrintScoreBoard()
+        {
+
+        }
+
         public void PrintBlock(int[,] block)
         {
             for (int x = 0; x < 4; x++)
