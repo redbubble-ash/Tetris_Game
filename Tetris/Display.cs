@@ -53,7 +53,74 @@ namespace Tetris_Game
 
         public void PrintScoreBoard()
         {
+            Console.CursorVisible = false;
+            Console.SetCursorPosition(50, 1);
+            Console.WriteLine("#############################");
+            Console.Title = "Timer";
+            string title = @"
+                                                      ___          ___  __  
+                                                       |  |  |\/| |__  |__) 
+                                                       |  |  |  | |___ |  \ 
+                      
+                      
+                      
+                      
+                      
+";
+            Console.SetCursorPosition(50,2);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(title, Console.ForegroundColor);
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(50, 7);
+            Console.WriteLine("            aaaaaaaa");
+            Console.ResetColor();
+            Console.Title = "Score";
+            string score = @"
+                                                      __   __   __   __   ___ 
+                                                     /__` /  ` /  \ |__) |__  
+                                                     .__/ \__, \__/ |  \ |___ 
+                         
+";
+            Console.SetCursorPosition(50, 8);
+            Console.WriteLine(score);
+            Console.SetCursorPosition(50, 13);
+            Console.WriteLine("            aaaaaaaa");
+            Console.Title = "Level";
+            string level = @"
+                                                            ___       ___      
+                                                      |    |__  \  / |__  |    
+                                                      |___ |___  \/  |___ |___ 
+                         
+";
+            Console.SetCursorPosition(50, 14);
+            Console.WriteLine(level);
+            Console.SetCursorPosition(50, 20);
+            Console.WriteLine("            aaaaaaaa");
+            Console.Title = "Lines";
+            string lines = @"
+                                                                    ___  __  
+                                                       |    | |\ | |__  /__` 
+                                                       |___ | | \| |___ .__/ 
+                      
+";
+            Console.SetCursorPosition(50, 21);
+            Console.WriteLine(lines);
+            Console.SetCursorPosition(50, 27);
+            Console.WriteLine("            aaaaaaaa");
 
+
+
+
+            //for (int row = 5; row < 10;  row++)
+            //{
+            //    Console.SetCursorPosition(50, row);
+            //    Console.Write("*                           *");
+            //}
+            //Console.SetCursorPosition(50, 9);
+            //Console.WriteLine("*****************************");
+            Console.SetCursorPosition(50, 29);
+            Console.WriteLine("#############################");
         }
 
         public void PrintBlock(int[,] block)

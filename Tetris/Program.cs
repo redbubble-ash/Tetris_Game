@@ -52,6 +52,7 @@ namespace Tetris_Game
             board.PlaceBlock();
             displayBoard = new Display();
             displayBoard.PrintBoad(board);
+            displayBoard.PrintScoreBoard();
             SetTimer();
             while (true)
             {
