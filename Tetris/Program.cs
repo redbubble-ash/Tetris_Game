@@ -16,6 +16,7 @@ namespace Tetris_Game
         private static void Main(string[] args)
         {
             WMPLib.WindowsMediaPlayer WinMediaPlayer = new WMPLib.WindowsMediaPlayer();
+            (WinMediaPlayer.settings as WMPLib.IWMPSettings).setMode("loop", true);
             WinMediaPlayer.URL = "Tetris.mp3";
             WinMediaPlayer.controls.play();
             Console.SetWindowSize(50, 50);
