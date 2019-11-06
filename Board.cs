@@ -121,11 +121,11 @@ namespace Tetris_Game
                         break;
 
                     case Key.rLeft:
-                        if (checkMove(-1, 0) && checkMove(1, 0)) newPiece.Lrotate();
+                        if (checkMove(-1, 0) && checkMove(1, 0) && checkMove(0, 1)) newPiece.Lrotate();
                         break;
 
                     case Key.rRight:
-                        if (checkMove(-1, 0) && checkMove(1, 0)) newPiece.Rrotate(); ;
+                        if (checkMove(-1, 0) && checkMove(1, 0) && checkMove(0, 1)) newPiece.Rrotate(); ;
                         break;
 
                     default:
