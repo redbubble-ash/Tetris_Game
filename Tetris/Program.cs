@@ -11,6 +11,7 @@ namespace Tetris_Game
     {
         private static System.Timers.Timer aTimer;
         private static Board board;
+        private static Scoreboard scoreBoard;
         private static Display displayBoard;
 
         private static void Main(string[] args)
@@ -51,12 +52,14 @@ namespace Tetris_Game
             board = new Board();
             board.PlaceBlock();
             displayBoard = new Display();
-            displayBoard.PrintBoad(board);
-            displayBoard.PrintScoreBoard();
+            scoreBoard = new Scoreboard(board);
+            displayBoard.PrintBoad(scoreBoard,board);
             SetTimer();
             while (true)
             {
-                displayBoard.PrintBoad(board);
+                displayBoard.PrintBoad(scoreBoard,board);
+                displayBoard.PrintScoreBoard(scoreBoard, board);
+
                 Thread.Sleep(200); //allow main thread delay for 0.2 second
                 while (Console.KeyAvailable)
                 {
@@ -105,6 +108,7 @@ namespace Tetris_Game
         {
             board.DropBlock();
             //displayBoard.PrintBoad(board);
+
         }
     }
 }

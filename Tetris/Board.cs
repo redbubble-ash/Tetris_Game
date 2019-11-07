@@ -9,10 +9,10 @@ namespace Tetris_Game
         public const int boardWidth = 20;
         public const int boardHeight = 30;
         public List<Cell[]> wholeBoard;
-        public Piece newPiece; // using this to handle rotation of a piece.
+        public Piece currentPiece; // using this to handle rotation of a piece.
+        public Piece nextPiece;
         public Bricks currentBlock;
         public Bricks nextBlock;
-        public Bricks[] rArr = new Bricks[2];
 
 
         public enum Key { Left, Right, Down, rLeft, rRight }
@@ -36,6 +36,10 @@ namespace Tetris_Game
                 }
                 wholeBoard.Add(cellArrary);
             }
+            Random r = new Random();
+            Bricks block = (Bricks)r.Next(0, 7);
+            nextBlock = block;
+            nextPiece = new Piece(nextBlock);
         }
 
         // add a piece into the board and give value 1 for the filled cells
@@ -44,15 +48,12 @@ namespace Tetris_Game
             isInGame = true;
             fallingPoint.x = 8;
             fallingPoint.y = 0;
+            currentPiece = nextPiece;
+            currentBlock = nextBlock;
             Random r = new Random();
-            for (int i = 0; i < 2; i++)
-            {
-                Bricks blocks = (Bricks)r.Next(0, 7);
-                rArr[i] = blocks;
-            }
-            currentBlock = rArr[0];
-            newPiece = new Piece(currentBlock);
-            nextBlock = rArr[1];
+            Bricks block = (Bricks)r.Next(0, 7);
+            nextBlock = block;
+            nextPiece = new Piece(nextBlock);
         }
 
         public bool checkMove(int Xmove, int Ymove)
@@ -61,7 +62,7 @@ namespace Tetris_Game
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    if (newPiece.pieceStore[j, i] == 1)
+                    if (currentPiece.pieceStore[j, i] == 1)
                     {
                         if (j + fallingPoint.y + Ymove >= boardHeight)
                         {
@@ -99,10 +100,10 @@ namespace Tetris_Game
             {
                 for (int col = 0; col < 4; col++)
                 {
-                    if (newPiece.pieceStore[row, col] == 1)
+                    if (currentPiece.pieceStore[row, col] == 1)
                     {
                         wholeBoard[row + fallingPoint.y][col + fallingPoint.x].val = 1;
-                        wholeBoard[row + fallingPoint.y][col + fallingPoint.x].color = newPiece.GetShapeColor(currentBlock);
+                        wholeBoard[row + fallingPoint.y][col + fallingPoint.x].color = currentPiece.GetShapeColor(currentBlock);
                     }
                 }
             }
@@ -129,11 +130,11 @@ namespace Tetris_Game
                         break;
 
                     case Key.rLeft:
-                        if (checkMove(-1, 0) && checkMove(1, 0) && checkMove(0, 1)) newPiece.Lrotate();
+                        if (checkMove(-1, 0) && checkMove(1, 0) && checkMove(0, 1)) currentPiece.Lrotate();
                         break;
 
                     case Key.rRight:
-                        if (checkMove(-1, 0) && checkMove(1, 0) && checkMove(0, 1)) newPiece.Rrotate(); ;
+                        if (checkMove(-1, 0) && checkMove(1, 0) && checkMove(0, 1)) currentPiece.Rrotate(); ;
                         break;
 
                     default:

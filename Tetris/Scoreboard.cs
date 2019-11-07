@@ -1,49 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
+using System.Threading;
 
 namespace Tetris_Game
 {
     class Scoreboard
     {
-        public int score;
-        public int levels; 
+        public int Score { get; private set; }
+        public int Levels { get; private set; }
 
-        public int GetScore(int level, Board board)
+        public Scoreboard(Board board)
+        {
+           
+        }
+
+        public int UpdateScore(int level, Board board)
         {
             int scoreEachRow = 40 + (level - 1) * 10;
-            score = scoreEachRow * board.removedRows;
-            return score;
+            Score = scoreEachRow * board.removedRows;
+            return Score;
         }
 
-        public void GetLevel(Board board)
+        public int UpdateLevel(Board board)
         {
-            if (score < 400) levels = 1;
-            else if (score == 400 && levels == 1)
+            if (Score < 400) Levels = 1;
+            else if (Score == 400 && Levels == 1)
             {
-                levels = 2;
-                score = 0;
+                Levels = 2;
+                Score = 0;
             }
-            else if (score == 500 && levels == 2)
+            else if (Score == 500 && Levels == 2)
             {
-                levels = 3;
-                score = 0;
+                Levels = 3;
+                Score = 0;
             }
-            else if (score == 600 && levels == 2)
+            else if (Score == 600 && Levels == 2)
             {
-                levels = 3;
-                score = 0;
+                Levels = 3;
+                Score = 0;
             }
+            return Levels;
         }
 
-        public int GetLines(Board board)
-        {
-            return board.removedRows;
-        }
-
-        public Bricks GetNextShape(Board board)
-        {
-           return board.nextBlock;
-        }
     }
 }
