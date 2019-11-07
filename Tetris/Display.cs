@@ -176,7 +176,7 @@ namespace Tetris_Game
             {
                 Console.Read();
             }
-            Console.Read();
+            Console.ReadK();
 
         }
     }
