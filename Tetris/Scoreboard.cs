@@ -11,8 +11,6 @@ namespace Tetris_Game
         public int Score { get; private set; }
         public int Levels { get; private set; }
 
-        public double interval;
-
         public Scoreboard(Board board)
         {
            
