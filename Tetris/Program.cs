@@ -37,6 +37,7 @@ namespace Tetris_Game
       ▀       ▀▀▀▀▀▀▀▀▀▀▀       ▀       ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀
 
 ";
+
             //Console.SetCursorPosition((Console.WindowWidth - title.Length) / 2, Console.CursorTop);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(title, Console.ForegroundColor);

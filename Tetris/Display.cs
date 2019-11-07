@@ -61,7 +61,7 @@ namespace Tetris_Game
             string title2 = @"       |\ | |__  \_/  |";
             string title3 = @"       | \| |___ / \  |";
             Console.SetCursorPosition(50,2);
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(title1, Console.ForegroundColor);
             Console.SetCursorPosition(50, 3);
             Console.WriteLine(title2, Console.ForegroundColor);
@@ -76,7 +76,7 @@ namespace Tetris_Game
             string score2 = @"    /__` /  ` /  \ |__) |__";
             string score3 = @"    .__/ \__, \__/ |  \ |___";
             Console.SetCursorPosition(50, 10);
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(score1, Console.ForegroundColor);
             Console.SetCursorPosition(50, 11);
             Console.WriteLine(score2, Console.ForegroundColor);
@@ -93,7 +93,7 @@ namespace Tetris_Game
             string level2 = @"    |    |__  \  / |__  | ";
             string level3 = @"    |___ |___  \/  |___ |___";
             Console.SetCursorPosition(50, 17);
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(level1, Console.ForegroundColor);
             Console.SetCursorPosition(50, 18);
             Console.WriteLine(level2, Console.ForegroundColor);
@@ -109,7 +109,7 @@ namespace Tetris_Game
             string lines2 = @"     |    | |\ | |__  /__` ";
             string lines3 = @"     |___ | | \| |___ .__/ ";
             Console.SetCursorPosition(50, 23);
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(lines1, Console.ForegroundColor);
             Console.SetCursorPosition(50, 24);
             Console.WriteLine(lines2, Console.ForegroundColor);

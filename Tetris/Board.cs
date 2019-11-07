@@ -109,6 +109,7 @@ namespace Tetris_Game
             }
 
             clearRow(); //check if the row has been filled so it can be cleared.
+
         }
 
         public void keyPress(Key k)
