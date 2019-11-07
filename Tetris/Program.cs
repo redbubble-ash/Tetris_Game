@@ -19,7 +19,7 @@ namespace Tetris_Game
             //background music;
             WMPLib.WindowsMediaPlayer WinMediaPlayer = new WMPLib.WindowsMediaPlayer();
             (WinMediaPlayer.settings as WMPLib.IWMPSettings).setMode("loop", true);
-            WinMediaPlayer.URL = "Tetris.mp3";
+            WinMediaPlayer.URL = "start.mp3";
             WinMediaPlayer.controls.play();
 
             Console.Title = "Tetris";
@@ -48,25 +48,26 @@ namespace Tetris_Game
             Console.Read();
             Console.Clear();
 
+            WinMediaPlayer.URL = "Tetris.mp3";
+            WinMediaPlayer.controls.play();
             Console.SetWindowSize(50, 50);
             Console.SetBufferSize(80, 80);
             board = new Board();
             board.PlaceBlock();
             displayBoard = new Display();
             scoreBoard = new Scoreboard(board);
-            displayBoard.PrintBoad(scoreBoard,board);
+            displayBoard.PrintBoad(scoreBoard, board);
             scoreBoard.UpdateLevel(board);
             SetTimer(scoreBoard.Levels);
             while (true)
             {
                 //check if current timer interval matches the level changes
-                if (scoreBoard.UpdateInterval(scoreBoard.Levels)!= aTimer.Interval)
+                if (scoreBoard.UpdateInterval(scoreBoard.Levels) != aTimer.Interval)
                 {
                     aTimer.Interval = scoreBoard.UpdateInterval(scoreBoard.Levels);
-
                 }
 
-                displayBoard.PrintBoad(scoreBoard,board);
+                displayBoard.PrintBoad(scoreBoard, board);
                 displayBoard.PrintScoreBoard(scoreBoard, board);
 
                 Thread.Sleep(200); //allow main thread delay for 0.2 second
@@ -105,8 +106,8 @@ namespace Tetris_Game
 
         private static void SetTimer(int level)
         {
-                // Create a timer with half second interval.
-                aTimer = new System.Timers.Timer(500);
+            // Create a timer with half second interval.
+            aTimer = new System.Timers.Timer(500);
             // Hook up the Elapsed event for the timer.
             aTimer.Elapsed += Tick;
             aTimer.AutoReset = true;
@@ -116,7 +117,6 @@ namespace Tetris_Game
         private static void Tick(Object source, ElapsedEventArgs e)
         {
             board.DropBlock();
-
         }
     }
 }
