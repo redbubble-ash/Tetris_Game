@@ -54,9 +54,17 @@ namespace Tetris_Game
             displayBoard = new Display();
             scoreBoard = new Scoreboard(board);
             displayBoard.PrintBoad(scoreBoard,board);
-            SetTimer();
+            scoreBoard.UpdateLevel(board);
+            SetTimer(scoreBoard.Levels);
             while (true)
             {
+                //check if current timer interval matches the level changes
+                if (scoreBoard.UpdateInterval(scoreBoard.Levels)!= aTimer.Interval)
+                {
+                    aTimer.Interval = scoreBoard.UpdateInterval(scoreBoard.Levels);
+
+                }
+
                 displayBoard.PrintBoad(scoreBoard,board);
                 displayBoard.PrintScoreBoard(scoreBoard, board);
 
@@ -94,10 +102,10 @@ namespace Tetris_Game
             aTimer.Dispose();
         }
 
-        private static void SetTimer()
+        private static void SetTimer(int level)
         {
-            // Create a timer with a one second interval.
-            aTimer = new System.Timers.Timer(500);
+                // Create a timer with half second interval.
+                aTimer = new System.Timers.Timer(500);
             // Hook up the Elapsed event for the timer.
             aTimer.Elapsed += Tick;
             aTimer.AutoReset = true;
@@ -107,7 +115,6 @@ namespace Tetris_Game
         private static void Tick(Object source, ElapsedEventArgs e)
         {
             board.DropBlock();
-            //displayBoard.PrintBoad(board);
 
         }
     }
