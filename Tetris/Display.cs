@@ -9,7 +9,7 @@ namespace Tetris_Game
         public void PrintBoad(Scoreboard scoreBoard, Board board)
         {
             Console.CursorVisible = false;
-            for (int y =0 ; y < Board.boardHeight; y++)
+            for (int y = 0; y < Board.boardHeight; y++)
             {
                 Console.SetCursorPosition(0, y);
                 Console.Write("*");
@@ -43,7 +43,7 @@ namespace Tetris_Game
                         Console.ResetColor();
                     }
                 }
-                Console.SetCursorPosition(Board.boardWidth*2+1, y);
+                Console.SetCursorPosition(Board.boardWidth * 2 + 1, y);
                 Console.Write("*");
                 Console.WriteLine();
             }
@@ -60,7 +60,7 @@ namespace Tetris_Game
             string title1 = @"             ___     ___";
             string title2 = @"       |\ | |__  \_/  |";
             string title3 = @"       | \| |___ / \  |";
-            Console.SetCursorPosition(50,2);
+            Console.SetCursorPosition(50, 2);
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(title1, Console.ForegroundColor);
             Console.SetCursorPosition(50, 3);
@@ -148,6 +148,31 @@ namespace Tetris_Game
                 }
                 Console.WriteLine();
             }
+        }
+
+        public void PrintGameOver()
+        {
+            Console.Clear();
+            Console.Title = "GameOver";
+            string title = @"
+
+  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███
+ ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒
+▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒
+░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄
+░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒
+ ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░
+  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░
+░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░
+      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░
+                                                     ░
+";
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(title, Console.ForegroundColor);
+            Console.WriteLine();
+            Console.ResetColor();
+            Console.WriteLine("                     Press enter to start again.");
+            Console.Clear();
         }
     }
 }

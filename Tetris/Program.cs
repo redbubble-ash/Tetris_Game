@@ -38,7 +38,6 @@ namespace Tetris_Game
 
 ";
 
-            //Console.SetCursorPosition((Console.WindowWidth - title.Length) / 2, Console.CursorTop);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(title, Console.ForegroundColor);
             Console.WriteLine();
@@ -47,7 +46,6 @@ namespace Tetris_Game
             Console.WriteLine("                             Press enter to start");
             Console.Read();
             Console.Clear();
-
             WinMediaPlayer.URL = "Tetris.mp3";
             WinMediaPlayer.controls.play();
             Console.SetWindowSize(50, 50);

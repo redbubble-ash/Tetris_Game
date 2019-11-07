@@ -14,10 +14,10 @@ namespace Tetris_Game
         public Bricks currentBlock;
         public Bricks nextBlock;
 
-
         public enum Key { Left, Right, Down, rLeft, rRight }
 
-        public bool isInGame;
+        public bool isInGame = true;
+        public bool playAgain;
         public int removedRows = 0;
 
         public Point fallingPoint = new Point(); //track the current falling block's x & y
@@ -45,7 +45,6 @@ namespace Tetris_Game
         // add a piece into the board and give value 1 for the filled cells
         public void PlaceBlock()
         {
-            isInGame = true;
             fallingPoint.x = 8;
             fallingPoint.y = 0;
             currentPiece = nextPiece;
@@ -109,7 +108,6 @@ namespace Tetris_Game
             }
 
             clearRow(); //check if the row has been filled so it can be cleared.
-
         }
 
         public void keyPress(Key k)
@@ -170,6 +168,17 @@ namespace Tetris_Game
                     }
                     wholeBoard.Insert(0, cellArrary);
                     removedRows++;
+                }
+            }
+        }
+
+        public void isGameOver()
+        {
+            for (int col = 0; col < boardWidth; col++)
+            {
+                if (wholeBoard[0][col].val == 1)
+                {
+                    isInGame = false;
                 }
             }
         }
