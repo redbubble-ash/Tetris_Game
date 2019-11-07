@@ -44,65 +44,68 @@ namespace Tetris_Game
             Console.WriteLine("                           Awesome    Tetris   Game");
             Console.ResetColor();
             Console.WriteLine("                             Press enter to start");
-            Console.Read();
-
             //start the game
-            Console.Clear();
-            WinMediaPlayer.URL = "Tetris.mp3";
-            WinMediaPlayer.controls.play();
-            Console.SetWindowSize(100, 50);
-            Console.SetBufferSize(100, 80);
-            board = new Board();
-            board.PlaceBlock();
-            displayBoard = new Display();
-            scoreBoard = new Scoreboard(board);
-            displayBoard.PrintBoad(scoreBoard, board);
-            scoreBoard.UpdateLevel(board);
-            SetTimer();
             while (true)
             {
-                //check if current timer interval matches the level changes
-                //increase the dropping speed when level goes up
-                if (scoreBoard.UpdateInterval(scoreBoard.Levels) != aTimer.Interval)
-                {
-                    aTimer.Interval = scoreBoard.UpdateInterval(scoreBoard.Levels);
-                }
-
+                Console.Read();
+                Console.Clear();
+                WinMediaPlayer.URL = "Tetris.mp3";
+                WinMediaPlayer.controls.play();
+                Console.SetWindowSize(100, 50);
+                Console.SetBufferSize(100, 80);
+                board = new Board();
+                board.PlaceBlock();
+                displayBoard = new Display();
+                scoreBoard = new Scoreboard(board);
                 displayBoard.PrintBoad(scoreBoard, board);
-                displayBoard.PrintScoreBoard(scoreBoard, board);
-
-                Thread.Sleep(200); //allow main thread delay for 0.2 second
-                while (Console.KeyAvailable)
+                scoreBoard.UpdateLevel(board);
+                SetTimer();
+                while (true)
                 {
-                    switch (Console.ReadKey(true).Key)
+                    if (!board.isInGame) break;
+
+                    //check if current timer interval matches the level changes
+                    //increase the dropping speed when level goes up
+                    if (scoreBoard.UpdateInterval(scoreBoard.Levels) != aTimer.Interval)
                     {
-                        case ConsoleKey.LeftArrow:
-                            board.keyPress(Board.Key.Left);
-                            break;
+                        aTimer.Interval = scoreBoard.UpdateInterval(scoreBoard.Levels);
+                    }
 
-                        case ConsoleKey.RightArrow:
-                            board.keyPress(Board.Key.Right);
-                            break;
+                    displayBoard.PrintBoad(scoreBoard, board);
+                    displayBoard.PrintScoreBoard(scoreBoard, board);
 
-                        case ConsoleKey.DownArrow:
-                            board.keyPress(Board.Key.Down);
-                            break;
+                    Thread.Sleep(200); //allow main thread delay for 0.2 second
+                    while (Console.KeyAvailable)
+                    {
+                        switch (Console.ReadKey(true).Key)
+                        {
+                            case ConsoleKey.LeftArrow:
+                                board.keyPress(Board.Key.Left);
+                                break;
 
-                        case ConsoleKey.A:
-                            board.keyPress(Board.Key.rLeft);
-                            break;
+                            case ConsoleKey.RightArrow:
+                                board.keyPress(Board.Key.Right);
+                                break;
 
-                        case ConsoleKey.D:
-                            board.keyPress(Board.Key.rRight);
-                            break;
+                            case ConsoleKey.DownArrow:
+                                board.keyPress(Board.Key.Down);
+                                break;
 
-                        default:
-                            break;
+                            case ConsoleKey.A:
+                                board.keyPress(Board.Key.rLeft);
+                                break;
+
+                            case ConsoleKey.D:
+                                board.keyPress(Board.Key.rRight);
+                                break;
+
+                            default:
+                                break;
+                        }
                     }
                 }
+                //aTimer.Dispose();
             }
-            aTimer.Stop();
-            aTimer.Dispose();
         }
 
         private static void SetTimer()
@@ -117,7 +120,16 @@ namespace Tetris_Game
 
         private static void Tick(Object source, ElapsedEventArgs e)
         {
-            board.DropBlock();
+            board.isGameOver();
+            if (board.isInGame)
+            {
+                board.DropBlock();
+            }
+            else
+            {
+                aTimer.Stop();
+                displayBoard.PrintGameOver();
+            }
         }
     }
 }

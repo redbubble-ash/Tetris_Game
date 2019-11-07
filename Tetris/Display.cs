@@ -172,7 +172,12 @@ namespace Tetris_Game
             Console.WriteLine();
             Console.ResetColor();
             Console.WriteLine("                     Press enter to start again.");
-            Console.Clear();
+            while (Console.KeyAvailable)
+            {
+                Console.Read();
+            }
+            Console.Read();
+
         }
     }
 }
