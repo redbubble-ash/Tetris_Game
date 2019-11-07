@@ -17,7 +17,7 @@ namespace Tetris_Game
         public enum Key { Left, Right, Down, rLeft, rRight }
 
         public bool isInGame = true;
-        public bool playAgain;
+        public bool playAgain = true;
         public int removedRows = 0;
 
         public Point fallingPoint = new Point(); //track the current falling block's x & y

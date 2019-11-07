@@ -25,10 +25,10 @@ namespace Tetris_Game
 
         public int UpdateLevel(Board board)
         {
-            if (Score < 120) Levels = 1;
-            else if (Score >= 120 && Score < 200) Levels = 2;
-            else if (Score >= 200 && Score < 280) Levels = 3;
-            else if (Score >= 320) Levels = 4;
+            if (Score < 40) Levels = 1;
+            else if (Score >= 40 && Score < 120) Levels = 2;
+            else if (Score >= 120 && Score < 200) Levels = 3;
+            else if (Score >= 200) Levels = 4;
             return Levels;
         }
 

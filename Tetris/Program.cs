@@ -45,21 +45,24 @@ namespace Tetris_Game
             Console.ResetColor();
             Console.WriteLine("                             Press enter to start");
             Console.Read();
+
+            //start the game
             Console.Clear();
             WinMediaPlayer.URL = "Tetris.mp3";
             WinMediaPlayer.controls.play();
-            Console.SetWindowSize(50, 50);
-            Console.SetBufferSize(80, 80);
+            Console.SetWindowSize(100, 50);
+            Console.SetBufferSize(100, 80);
             board = new Board();
             board.PlaceBlock();
             displayBoard = new Display();
             scoreBoard = new Scoreboard(board);
             displayBoard.PrintBoad(scoreBoard, board);
             scoreBoard.UpdateLevel(board);
-            SetTimer(scoreBoard.Levels);
+            SetTimer();
             while (true)
             {
                 //check if current timer interval matches the level changes
+                //increase the dropping speed when level goes up
                 if (scoreBoard.UpdateInterval(scoreBoard.Levels) != aTimer.Interval)
                 {
                     aTimer.Interval = scoreBoard.UpdateInterval(scoreBoard.Levels);
@@ -102,7 +105,7 @@ namespace Tetris_Game
             aTimer.Dispose();
         }
 
-        private static void SetTimer(int level)
+        private static void SetTimer()
         {
             // Create a timer with half second interval.
             aTimer = new System.Timers.Timer(500);
