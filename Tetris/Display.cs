@@ -9,7 +9,7 @@ namespace Tetris_Game
 {
     internal class Display
     {
-        public void PrintBoad(Scoreboard scoreBoard, Board board)
+        public void PrintBoard(Scoreboard scoreBoard, Board board)
         {
             Console.CursorVisible = false;
             for (int y = 0; y < Board.boardHeight; y++)
@@ -171,13 +171,14 @@ namespace Tetris_Game
                                                      ░
 ";
             Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("\n\n\n\n\n\n");
             Console.WriteLine(title, Console.ForegroundColor);
             Console.WriteLine();
             Console.ResetColor();
-            Console.WriteLine("                     Press enter to start again.");
+            Console.WriteLine("                       Press ENTER to start again.\n\n");
             string str = File.ReadAllText("score.txt");
             int savedScore = Convert.ToInt32(str);
-            Console.WriteLine("                     Higest score is " + savedScore);
+            Console.WriteLine("                             Highest score: " + savedScore);
             while (Console.KeyAvailable)
             {
                 Console.Read();

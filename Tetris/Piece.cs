@@ -5,6 +5,7 @@ namespace Tetris_Game
 
 {
     public enum Bricks { I, O, T, S, Z, J, L }
+
     internal class Piece
     {
         private static Point[][] pieces;  // jagged arrays.

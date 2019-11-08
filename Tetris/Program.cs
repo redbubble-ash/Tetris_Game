@@ -43,9 +43,10 @@ namespace Tetris_Game
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(title, Console.ForegroundColor);
             Console.WriteLine();
-            Console.WriteLine("                           Awesome    Tetris   Game");
+            Console.WriteLine("                            Awesome    Tetris   Game\n");
             Console.ResetColor();
-            Console.WriteLine("                             Press enter to start");
+            Console.WriteLine("                              Press ENTER to start\n\n");
+            Console.WriteLine($"Arrow Keys to Move    LRotate: A    RRotate: D    Pause: Spacebar    Exit: Esc\n\n");
             int savedScore = 0;
             try
             {
@@ -56,7 +57,7 @@ namespace Tetris_Game
             {
                 savedScore = 0;
             }
-            Console.WriteLine("Higest score is " + savedScore);
+            Console.WriteLine("Highest score: " + savedScore);
 
             //start the game
             while (true)
@@ -71,19 +72,21 @@ namespace Tetris_Game
                 board.PlaceBlock();
                 displayBoard = new Display();
                 scoreBoard = new Scoreboard(board);
-                displayBoard.PrintBoad(scoreBoard, board);
+                displayBoard.PrintBoard(scoreBoard, board);
                 scoreBoard.UpdateLevel(board);
                 SetTimer();
                 while (true)
                 {
+                    // when Game is over
                     if (!board.isInGame)
                     {
+                        (WinMediaPlayer.settings as WMPLib.IWMPSettings).setMode("loop", false);
                         WinMediaPlayer.URL = "gameover.mp3";
                         WinMediaPlayer.controls.play();
                         break;
                     };
 
-                    //check if current timer interval matches the level changes
+                    //check to see if the current timer interval matches the level changes
                     //increase the dropping speed when level goes up
                     if (scoreBoard.UpdateInterval(scoreBoard.Levels) != aTimer.Interval)
                     {
@@ -92,7 +95,7 @@ namespace Tetris_Game
 
                     lock (consoleLock) // two consoleLocks in the main class, the second thread will wait untill the first one is complete
                     {
-                        displayBoard.PrintBoad(scoreBoard, board);
+                        displayBoard.PrintBoard(scoreBoard, board);
                         displayBoard.PrintScoreBoard(scoreBoard, board);
                     }
 
