@@ -56,13 +56,13 @@ namespace Tetris_Game
                     return 500;
 
                 case 2:
-                    return 350;
+                    return 250;
 
                 case 3:
-                    return 300;
+                    return 200;
 
                 case 4:
-                    return 250;
+                    return 150;
 
                 default:
                     throw new Exception();

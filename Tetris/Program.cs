@@ -93,7 +93,9 @@ namespace Tetris_Game
                         aTimer.Interval = scoreBoard.UpdateInterval(scoreBoard.Levels);
                     }
 
-                    lock (consoleLock) // two consoleLocks in the main class, the second thread will wait untill the first one is complete
+                    // two consoleLocks in the main class
+                    // the second thread will wait untill the first one is complete
+                    lock (consoleLock)
                     {
                         displayBoard.PrintBoard(scoreBoard, board);
                         displayBoard.PrintScoreBoard(scoreBoard, board);

@@ -108,7 +108,9 @@ namespace Tetris_Game
             }
         }
 
-        public void Rrotate() // create a new arrary to store all 16 new coordinates and then paste back to the pieceStore
+        // rotate clockwise
+        // create a new arrary to store all 16 new coordinates and then restore back to the pieceStore
+        public void Rrotate()
         {
             int[,] pieceRotateArr = new int[4, 4];
 
@@ -129,7 +131,9 @@ namespace Tetris_Game
             }
         }
 
-        public void Lrotate() // create a new arrary to store all 16 new coordinates and then paste back to the pieceStore array.
+        // rotate counterclockwise
+        // create a new arrary to store all 16 new coordinates and then restore back to the pieceStore array.
+        public void Lrotate()
         {
             int[,] pieceRotateArr = new int[4, 4];
 
