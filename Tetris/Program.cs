@@ -100,7 +100,11 @@ namespace Tetris_Game
                                 break;
 
                             case ConsoleKey.Spacebar:
+<<<<<<< HEAD
                                 aTimer.Enabled = aTimer.Enabled ? true : false;
+=======
+                                aTimer.Enabled = aTimer.Enabled ? false : true; // Pause key, when aTimer.Enabled is true ==> false (Pause the game)
+>>>>>>> edd9fe66c479c61db5afda65d81df5b2e8d5b12a
                                 break;
 
                             default:
