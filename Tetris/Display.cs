@@ -177,10 +177,6 @@ namespace Tetris_Game
                 Console.Read();
             }
             Console.Read();
-<<<<<<< HEAD
-=======
-
->>>>>>> edd9fe66c479c61db5afda65d81df5b2e8d5b12a
         }
     }
 }
