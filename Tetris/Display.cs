@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using System.Media;
+using WMPLib;
 
 namespace Tetris_Game
 {
@@ -172,6 +175,9 @@ namespace Tetris_Game
             Console.WriteLine();
             Console.ResetColor();
             Console.WriteLine("                     Press enter to start again.");
+            string str = File.ReadAllText("score.txt");
+            int savedScore = Convert.ToInt32(str);
+            Console.WriteLine("                     Higest score is " + savedScore);
             while (Console.KeyAvailable)
             {
                 Console.Read();

@@ -4,6 +4,7 @@ using System.Timers;
 using System.Threading;
 using System.Media;
 using WMPLib;
+using System.IO;
 
 namespace Tetris_Game
 {
@@ -13,6 +14,7 @@ namespace Tetris_Game
         private static Board board;
         private static Scoreboard scoreBoard;
         private static Display displayBoard;
+        private static readonly object consoleLock = new object();
 
         private static void Main(string[] args)
         {
@@ -44,6 +46,18 @@ namespace Tetris_Game
             Console.WriteLine("                           Awesome    Tetris   Game");
             Console.ResetColor();
             Console.WriteLine("                             Press enter to start");
+            int savedScore = 0;
+            try
+            {
+                string str = File.ReadAllText("score.txt");
+                savedScore = Convert.ToInt32(str);
+            }
+            catch (Exception)
+            {
+                savedScore = 0;
+            }
+            Console.WriteLine("Higest score is " + savedScore);
+
             //start the game
             while (true)
             {
@@ -62,7 +76,12 @@ namespace Tetris_Game
                 SetTimer();
                 while (true)
                 {
-                    if (!board.isInGame) break;
+                    if (!board.isInGame)
+                    {
+                        WinMediaPlayer.URL = "gameover.mp3";
+                        WinMediaPlayer.controls.play();
+                        break;
+                    };
 
                     //check if current timer interval matches the level changes
                     //increase the dropping speed when level goes up
@@ -71,8 +90,11 @@ namespace Tetris_Game
                         aTimer.Interval = scoreBoard.UpdateInterval(scoreBoard.Levels);
                     }
 
-                    displayBoard.PrintBoad(scoreBoard, board);
-                    displayBoard.PrintScoreBoard(scoreBoard, board);
+                    lock (consoleLock) // two consoleLocks in the main class, the second thread will wait untill the first one is complete
+                    {
+                        displayBoard.PrintBoad(scoreBoard, board);
+                        displayBoard.PrintScoreBoard(scoreBoard, board);
+                    }
 
                     Thread.Sleep(200); //allow main thread delay for 0.2 second
                     while (Console.KeyAvailable)
@@ -136,7 +158,10 @@ namespace Tetris_Game
             else
             {
                 aTimer.Stop();
-                displayBoard.PrintGameOver();
+                lock (consoleLock)
+                {
+                    displayBoard.PrintGameOver();
+                }
             }
         }
     }

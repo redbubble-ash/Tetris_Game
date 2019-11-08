@@ -90,6 +90,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="gameover.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="score.txt" />
     <Content Include="start.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
