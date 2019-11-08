@@ -99,6 +99,10 @@ namespace Tetris_Game
                                 board.keyPress(Board.Key.rRight);
                                 break;
 
+                            case ConsoleKey.Spacebar:
+                                aTimer.Enabled = aTimer.Enabled ? true : false;
+                                break;
+
                             default:
                                 break;
                         }
